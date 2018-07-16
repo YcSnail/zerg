@@ -5,29 +5,25 @@
  */
 namespace app\api\controller\v1;
 
-use app\api\validate\TestValidate;
-use think\Validate;
+use app\api\validate\IDMustBePostiveInt;
+use app\api\model\Banner as BannerModel;
+use think\Exception;
 
 class Banner {
 
 
     public function getBanner($id){
 
-        $data = [
-            'name' =>'zhangsan',
-            'email'=>'123qq.com'
-        ];
+//        (new IDMustBePostiveInt())->goCheck();
 
-        $validate = new TestValidate();
+        $banner = BannerModel::getBannerByID($id);
 
-        $res = $validate->batch()->check($data);
-
-        if (!$res){
-            $res = $validate->getError();
+        if (!$banner){
+            echo 'error';
+            die();
         }
 
-        dump($res);
-
+        return json($banner);
     }
 
 }
