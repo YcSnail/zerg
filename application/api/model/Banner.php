@@ -14,8 +14,27 @@ namespace app\api\model;
 use think\Db;
 use think\Model;
 
-class Banner
+class Banner extends Model
 {
+
+
+    /**
+     * 关联 item 模型
+     */
+    public function items(){
+        /**
+         * HAS MANY 关联定义
+         * @access public
+         * @param string $model      模型名
+         * @param string $foreignKey 关联外键
+         * @param string $localKey   当前模型主键 ***
+         * @return HasMany
+         */
+        return $this->hasMany('BannerItem','banner_id','id');
+
+    }
+
+
 
     /**
      * @param $id int banner所在位置
@@ -39,8 +58,7 @@ class Banner
 //                $query->where('banner_id','=',$id);
 //            })
 //            ->select();
-
-
+        $result = '';
         return $result;
     }
 }
