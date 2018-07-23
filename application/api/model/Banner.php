@@ -11,11 +11,13 @@
 
 namespace app\api\model;
 
-use think\Db;
 use think\Model;
 
 class Banner extends Model
 {
+
+    // 隐藏字段
+    protected $hidden = ['id','delete_time','update_time'];
 
 
     /**
@@ -43,22 +45,8 @@ class Banner extends Model
     public static function getBannerByID($id)
     {
 
-        //第一种方法 直接写SQL
-        //$result = Db::query('select * from banner_item where banner_id=?',[$id]);
+        $banner = self::with(['items','items.img'])->find($id);
 
-        //第二种方法 使用TP自带的函数
-        // 表达法
-//        $result = Db::table('banner_item')
-//            ->where('banner_id','=',$id)
-//            ->select();
-
-        // 闭包
-//        $result = Db::table('banner_item')
-//            ->where(function($query) use ($id) {
-//                $query->where('banner_id','=',$id);
-//            })
-//            ->select();
-        $result = '';
-        return $result;
+        return $banner;
     }
 }
