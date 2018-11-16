@@ -21,13 +21,12 @@ class BaseValidate extends Validate {
 
     public function goCheck(){
 
-        return true;
-
         //获取http传入的参数
         //对参数进行检验
         $request = Request::instance();
         $params = $request->param();
         $request = $this->check($params);
+
         if (!$request){
             $error = $this->error;
             throw new Exception($error);

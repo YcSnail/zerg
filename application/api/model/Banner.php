@@ -11,6 +11,7 @@
 
 namespace app\api\model;
 
+use think\Exception;
 use think\Model;
 
 class Banner extends Model
@@ -44,6 +45,14 @@ class Banner extends Model
      */
     public static function getBannerByID($id)
     {
+
+        try{
+            1/0;
+        }
+        catch (Exception $ex){
+
+            throw $ex;
+        }
 
         $banner = self::with(['items','items.img'])->find($id);
 

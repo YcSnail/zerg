@@ -10,6 +10,7 @@
 
 namespace app\api\validate;
 
+
 /**
  * 检测变量ID 必须为 int型
  * Class IDMustBePostiveInt
@@ -22,14 +23,13 @@ class IDMustBePostiveInt extends BaseValidate {
         'id' => 'require|isPositiveInterger'
     ];
 
-    protected function isPositiveInter($value,$rule = '', $data = '',$field = ''){
+    protected function isPositiveInterger($value,$rule = '', $data = '',$field = ''){
 
         if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0) {
             return true;
         }
-        else{
-            return $field.'必须是正整数';
-        }
+
+        return $field.'必须是正整数';
     }
 
 }
