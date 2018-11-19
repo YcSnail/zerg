@@ -46,13 +46,7 @@ class Banner extends Model
     public static function getBannerByID($id)
     {
 
-        try{
-            1/0;
-        }
-        catch (Exception $ex){
-
-            throw $ex;
-        }
+        return null;
 
         $banner = self::with(['items','items.img'])->find($id);
 
